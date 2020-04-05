@@ -23,9 +23,9 @@ ggplot_add.pct_scale <- function(object, plot, object_name) {
   data <- plot[["data"]]
   var <- plot[["mapping"]][[object$axis]]
   if (object$axis == "x") {
-    scale <- scale_x_continuous
+    scale <- ggplot2::scale_x_continuous
   } else {
-    scale <- scale_y_continuous
+    scale <- ggplot2::scale_y_continuous
   }
   r <- range(rlang::eval_tidy(var, data), na.rm = TRUE)
 

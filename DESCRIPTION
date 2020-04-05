@@ -9,6 +9,9 @@ License: MIT + file LICENSE
 Depends: R (>= 3.2)
 Imports:
     ggplot2,
+    labeling,
+    magrittr,
+    rlang,
     scales
 Encoding: UTF-8
 LazyData: true
