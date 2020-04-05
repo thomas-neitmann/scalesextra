@@ -3,6 +3,8 @@ title: "scalesextra"
 output: github_document
 ---
 
+[![Lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
   out.width = "50%",
