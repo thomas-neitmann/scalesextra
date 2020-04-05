@@ -1,0 +1,64 @@
+---
+title: "scalesextra"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  out.width = "50%",
+  fig.show = "hold",
+  message = FALSE,
+  warning = FALSE
+)
+```
+
+## Overview
+
+`scalesextra` aims to make it a no brainer to customize `ggplot2` scales.
+
+## Installation
+
+The package is an a very early development stage and thus only available from GitHub.
+
+```r
+if (!"remotes" %in% installed.packages()) {
+  install.packages("remotes")
+}
+remotes::install_github("thomas-neitmann/scalesextra")
+```
+
+## Usage
+
+```{r scale_pct}
+library(dplyr)
+library(ggcharts)
+data(mtcars)
+
+cyl <- mtcars %>%
+  count(cyl) %>%
+  mutate(pct = n / sum(n) * 100)
+
+(p <- bar_chart(cyl, cyl, pct))
+p + scalesextra::scale_y_pct()
+```
+
+```{r scale_pretty}
+library(gapminder)
+data(gapminder)
+
+(p <- gapminder %>%
+  filter(year == 2007) %>%
+  ggplot(aes(pop, gdpPercap)) +
+  geom_point())
+p + scalesextra::scale_x_pretty() + scalesextra::scale_y_pretty()
+```
+
+```{r scale_tight}
+data(biomedicalrevenue)
+
+(p <- biomedicalrevenue %>%
+  filter(company == "Roche") %>%
+  ggplot(aes(year, revenue)) +
+  geom_col())
+p + scalesextra::scale_y_tight()
+```
