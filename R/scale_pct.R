@@ -33,10 +33,6 @@ ggplot_add.pct_scale <- function(object, plot, object_name) {
     rlang::abort("Values must be in [0, 1] or [0, 100].")
   }
 
-  as_pct <- function(scale = 100) {
-    function(x) paste0(x * scale, "%")
-  }
-
   if (exists("breaks", object)) {
     breaks <- object[["breaks"]]
   } else {
