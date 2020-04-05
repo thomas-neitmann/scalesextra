@@ -34,9 +34,17 @@ ggplot_add.pct_scale <- function(object, plot, object_name) {
   }
 
   if (exists("breaks", object)) {
-    breaks <- object[["breaks"]]
+    if (r[2] <= 1) {
+      breaks <- object[["breaks"]] * 100
+    } else {
+      breaks <- object[["breaks"]]
+    }
   } else {
-    breaks <- labeling::extended(r[1], r[2], m = 5)
+    if (r[2] <= 1) {
+      breaks <- labeling::extended(r[1] * 100, r[2] * 100, m = 5)
+    } else {
+      breaks <- labeling::extended(r[1], r[2], m = 5)
+    }
   }
 
   accuracy <- 1 / (10^max_n_digits(breaks))
