@@ -60,15 +60,19 @@ ggplot_add.pct_scale <- function(object, plot, object_name) {
 }
 
 max_n_digits <- function(x) {
-  max <- x %>%
+  decimal_values <- x %>%
     as.character() %>%
     strsplit("\\.") %>%
-    vapply(`[`, character(1), 2) %>%
+    vapply(`[`, character(1), 2)
+
+  if (all(is.na(decimal_values))) {
+    return(0)
+  } else {
+    decimal_values <- decimal_values[!is.na(decimal_values)]
+  }
+
+  decimal_values %>%
     nchar() %>%
     as.numeric() %>%
     max(na.rm = TRUE)
-  if (!is.finite(max)) {
-    return(0)
-  }
-  max
 }
